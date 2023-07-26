@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style2.css">
+</head>
+<style type="text/css">
+.main {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+/* Styles for the h1 heading */
+.main h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Styles for the input field */
+#task {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Styles for the add button */
+button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styles for the task list */
+#taskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Styles for individual task items */
+#taskList li {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Styles for completed tasks */
+#taskList li.completed {
+    text-decoration: line-through;
+    background-color: #f2f2f2;
+}
+
+/* Styles for the remove button in task items */
+.remove {
+    color: red;
+    cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+    function addTask() {
+    const form = document.querySelector("form");
+    const formData = new FormData(form);
+    const taskText = formData.get("task").trim();
+
+    if (taskText === "") {
+        alert("Please enter a task.");
+        return;
+    }
+
+    const taskList = document.getElementById("taskList");
+    const taskItem = document.createElement("li");
+    taskItem.textContent = taskText;
+    taskItem.addEventListener("click", () => {
+        taskItem.classList.toggle("completed");
+    });
+
+    const removeButton = document.createElement("span");
+    removeButton.textContent = "X";
+    removeButton.classList.add("remove");
+    removeButton.addEventListener("click", () => {
+        taskItem.remove();
+    });
+
+    taskItem.appendChild(removeButton);
+    taskList.appendChild(taskItem);
+    form.reset();
+}
+
+</script>
+
+<body>
+    <div class="area"></div><nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="/home">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                           home 
+                        </span>
+                    </a>
+                  
+                </li>
+                <li class="has-subnav">
+                    <a href="/spaces">
+                        <i class="fa fa-globe fa-2x"></i>
+                        <span class="nav-text">
+                            spaces
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                       <i class="fa fa-comments fa-2x"></i>
+                        <span class="nav-text">
+                            calender
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                       <i class="fa fa-camera-retro fa-2x"></i>
+                        <span class="nav-text">
+                            timer
+                        </span>
+                    </a>
+                   
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-film fa-2x"></i>
+                        <span class="nav-text">
+                            spotify
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/todo">
+                        <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">
+                           to do 
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="/logout">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+    
+</head>
+<body>
+    <div class="main">
+        <h1>To-Do List</h1>
+        <form id="todo-form">
+            <input type="text" id="task" placeholder="Enter task...">
+            <button type="submit">Add</button>
+        </form>
+        <ul id="taskList">
+            <!-- Tasks will be added dynamically using JavaScript -->
+        </ul>
+    </div>
+   
+</body>
+</html>

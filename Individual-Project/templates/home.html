@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="static/css/style2.css">
+	<title></title>
+
+	<script type="text/javascript">
+		function showw(){
+			var container = document.getElementById("wcontainer");
+			container.classList.toggle("hidden")
+		}
+		function showw2(){
+			var container = document.getElementById("w2container");
+			container.classList.toggle("hidden")
+		}
+		function showw3(){
+			var container = document.getElementById("w3container");
+			container.classList.toggle("hidden")
+		}
+  // Get references to the elements
+  const openTodoButton = document.getElementById('openTodoButton');
+  const todoContainer = document.getElementById('todoContainer');
+  const todoList = document.getElementById('todoList');
+  const newTodoInput = document.getElementById('newTodoInput');
+  const addTodoButton = document.getElementById('addTodoButton');
+
+  // Event listener for the "Open To-Do List" button
+  openTodoButton.addEventListener('click', function() {
+    todoContainer.style.display = 'block'; // Show the to-do list container
+  });
+
+  // Event listener for the "Add" button
+  addTodoButton.addEventListener('click', function() {
+    const newTodoText = newTodoInput.value.trim();
+    if (newTodoText !== '') {
+      // Create a new list item for the to-do list
+      const newTodoItem = document.createElement('li');
+      newTodoItem.textContent = newTodoText;
+
+      // Add the new item to the to-do list
+      todoList.appendChild(newTodoItem);
+
+      // Clear the input field
+      newTodoInput.value = '';
+    }
+  });
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        const results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Get the video link from the URL parameter and set it in the iframe source
+        const videoLink = getParameterByName('link');
+        const iframe = document.querySelector('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + videoLink;
+	</script>
+</head>
+<body id="h">
+<div class="area"></div><nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="/home">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                           home 
+                        </span>
+                    </a>
+                  
+                </li>
+                <li class="has-subnav">
+                    <a href="/choose">
+                        <i class="fa fa-globe fa-2x"></i>
+                        <span class="nav-text">
+                            spaces
+                        </span>
+                    </a>
+                    
+                </li>
+                
+                <li class="has-subnav">
+                    <button id='wbutton' onclick="showw()">
+                    	<i class="fa fa-clock"></i>
+                        <span class="nav-text">
+                            timer
+                        </span>
+                    </button>
+                       
+                    
+                   
+                </li>
+                <li>
+                    <button id='w2button' onclick="showw2()">
+                        <i class="fa fa-film fa-2x"></i>
+                        <span class="nav-text">
+                            spotify
+                        </span>
+                    </button>
+                </li>
+                <li>
+					<button id="openTodoButton">
+						<i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">
+                           to do 
+                        </span>
+					</button>
+					
+
+                        
+     
+                </li>
+                
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="/logout">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+
+<div id="wcontainer" class="hidden">
+	<div class='widget'>
+	<h1 id="timer">25:00</h1>
+    <form method="post" action="/timer">
+        <button type="submit" name="start">Start</button>
+        <button type="submit" name="reset">Reset</button>
+    </form> </div>
+</div>
+<div id="w2container" class="hidden">
+	<div class='widget'>
+	<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5qVEV9KSQzl6MR9qUqFzNW?utm_source=generator" width="30%" height="352" id='widget' frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> </div>
+</div>
+
+<div id="w3container" class="hidden">
+	<div class='widget'>
+	 <div class="main">
+        <h1>To-Do List</h1>
+        <form id="todo-form">
+            <input type="text" id="task" placeholder="Enter task...">
+            <button type="submit">Add</button>
+        </form>
+        <ul id="taskList">
+            <!-- Tasks will be added dynamically using JavaScript -->
+        </ul>
+    </div> </div>
+
+<div id="todoContainer" class="todo-container">
+  <h2>To-Do List</h2>
+  <ul id="todoList"></ul>
+  <input type="text" id="newTodoInput" placeholder="Add new task...">
+  <button id="addTodoButton">Add</button>
+</div>
+</div>
+<div>
+	<iframe width="640" height="360" src="https://www.youtube.com/embed/{{videoLink}}"></iframe>
+   </div>
+</body>
+</html>

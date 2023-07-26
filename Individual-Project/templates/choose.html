@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f0f0f0;
+	}
+	div {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 20px;
+	}
+	button {
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+		padding: 10px;
+		border-radius: 5px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		transition: transform 0.2s;
+	}
+	button:hover {
+		transform: scale(1.1);
+	}
+	img {
+		display: block;
+		border-radius: 5px;
+		height: 300px;
+	}
+	p {
+		margin: 10px 0;
+		text-align: center;
+		font-weight: bold;
+		color: #333;
+	}
+	/* Style for the div container */
+div {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Style for the h1 heading inside the div */
+div h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Style for the form */
+form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Style for the input text field */
+input[type="text"] {
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Style for the submit button on hover */
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+	</style>
+
+
+</head>
+<body>
+	<div>
+		<h1> Pick a space :)</h1>
+	</div>
+	<form method='POST' action='/choose'>
+		<input type="text" name="space" placeholder="enter space">
+		<input type="submit" name="submit">
+	</form>
+
+	{% for link in links %}
+		<button onclick="navigateToVideo('{{link}}')">
+			<iframe width="420" height="315" src="https://www.youtube.com/embed/{{link}}"></iframe>
+			<p> click here to use space</p>
+		</button>
+	{% endfor %}
+<script type="text/javascript">
+	function navigateToVideo(link) {
+		window.location.href = `/home?link=${link}`;
+        }
+</script>
+</body>
+</html>
